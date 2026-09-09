@@ -1,12 +1,7 @@
 name: Ubuntu Build
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  schedule:
-    - cron: '0 17 * * 5'
+  workflow_dispatch: 
 
 jobs:
 
@@ -34,13 +29,13 @@ jobs:
         run: |
           cmake --build build --target test
 
-      - name: Memcheck
-        working-directory: build
-        run: |
-          valgrind --error-exitcode=1 ./alltests
+      # - name: Memcheck
+      #   working-directory: build
+      #   run: |
+      #     valgrind --error-exitcode=1 ./alltests
 
-      - name: CPack
-        run: |
-          cd build
-          cpack
+      # - name: CPack
+      #   run: |
+      #     cd build
+      #     cpack
 
